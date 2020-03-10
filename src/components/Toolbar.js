@@ -5,6 +5,8 @@ import uuid from "uuid";
 import getRandomColor from "../utils/getRandomColor";
 import { getRandomCoordinate } from "../utils/getRandomCoordinatey";
 
+const BOXES = 'boxes'
+
 class Toolbar extends Component {
   addBox() {
     const box = {
@@ -27,6 +29,15 @@ class Toolbar extends Component {
     store.addBox(box)
   }
 
+  saveInSessionStorage() {
+    sessionStorage.setItem(BOXES, JSON.stringify(store.boxes))
+  }
+
+  getFromSessionStorage() {
+    const boxes = JSON.parse(sessionStorage.getItem(BOXES))
+    store.restartBoxes(boxes)
+  }
+
   render() {
     return (
       <div className="toolbar">
@@ -38,8 +49,14 @@ class Toolbar extends Component {
           <input type="color" id="colorPicker" />
           <button onClick={() => this.addBoxWithSelectedColor()}>Add Box With Selected Color</button>
           <button onClick={() => store.changeColorBox()}>Change Color Box</button>
-        </div>        
-        <span>{store.getSelectedBoxes()}</span>
+        </div>
+        <div className="block">
+          <span>{store.getSelectedBoxes()}</span>
+        </div>
+        <div className="block">
+          <button onClick={() => this.saveInSessionStorage()}>Save</button>
+          <button onClick={() => this.getFromSessionStorage()}>Load</button>
+        </div>
       </div>
     );
   }

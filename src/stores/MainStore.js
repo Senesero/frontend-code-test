@@ -43,6 +43,9 @@ const MainStore = types
             if(!changeColor) {
                 alert('Selecciona por lo menos una caja para cambiarla de color')
             }
+        },
+        restartBoxes(boxes) {
+            self.boxes = boxes
         }
     }))
     .views(self => ({
