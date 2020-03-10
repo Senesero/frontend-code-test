@@ -1,7 +1,7 @@
 import React from "react";
 
 import { observer } from "mobx-react";
-import Box from "../components/Box";
+import Box from "./Box";
 
 function Canvas({ store }) {
   return (
@@ -16,6 +16,7 @@ function Canvas({ store }) {
           width={box.width}
           height={box.height}
           box={box}
+          selected={box.selected}
         />
       ))}
     </div>
