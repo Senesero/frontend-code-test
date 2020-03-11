@@ -66,13 +66,13 @@ const store = MainStore.create({
     selectedBoxes: 'No boxes selected',
 });
 
-const box1 = BoxModel.create({
-    id: uuid(),
-    color: getRandomColor(),
-    left: 0,
-    top: 0
-});
+// const box1 = BoxModel.create({
+//     id: uuid(),
+//     color: getRandomColor(),
+//     left: 0,
+//     top: 0
+// });
 
-store.addBox(box1);
+// store.addBox(box1);
 
 export default store;

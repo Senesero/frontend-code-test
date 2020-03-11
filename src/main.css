@@ -49,5 +49,13 @@ html,
 .block {
     display: block;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+.flex {
+    display: inline-flex;    
+}
+
+.sessionStorage {
+    margin-right: 20px;
 }

@@ -4,6 +4,7 @@ import { observer } from "mobx-react";
 import uuid from "uuid";
 import getRandomColor from "../utils/getRandomColor";
 import { getRandomCoordinate } from "../utils/getRandomCoordinatey";
+import * as storeHistory from "../stores/StoreHistory"
 
 const BOXES = 'boxes'
 
@@ -38,6 +39,14 @@ class Toolbar extends Component {
     store.restartBoxes(boxes)
   }
 
+  previous() {
+    storeHistory.previousState()
+  }
+
+  next() {
+    storeHistory.nextState()
+  }
+
   render() {
     return (
       <div className="toolbar">
@@ -53,9 +62,15 @@ class Toolbar extends Component {
         <div className="block">
           <span>{store.getSelectedBoxes()}</span>
         </div>
-        <div className="block">
-          <button onClick={() => this.saveInSessionStorage()}>Save</button>
-          <button onClick={() => this.getFromSessionStorage()}>Load</button>
+        <div className="flex">
+          <div className="sessionStorage">
+            <button onClick={() => this.saveInSessionStorage()}>Save</button>
+            <button onClick={() => this.getFromSessionStorage()}>Load</button>
+          </div>
+          <div>
+            <button onClick={() => this.previous()}>Undo</button>
+            <button onClick={() => this.next()}>Redo</button>
+          </div>
         </div>
       </div>
     );
